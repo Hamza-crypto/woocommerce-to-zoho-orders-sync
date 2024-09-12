@@ -8,12 +8,19 @@ Author: Hamza Siddique
 
 defined('ABSPATH') or die('No script kiddies please!');
 
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+
+
 // Include necessary files
-include_once plugin_dir_path(__FILE__) . '/wp/class-db-handler.php';
-include_once plugin_dir_path(__FILE__) . '/wp/class-product-sync.php';
-include_once plugin_dir_path(__FILE__) . '/wp/class-order-sync.php';
-include_once plugin_dir_path(__FILE__) . '/zoho/class-api-handler.php';
-include_once plugin_dir_path(__FILE__) . '/wp/class-cron-handler.php';
+include_once plugin_dir_path(__FILE__) . 'wp/class/db-handler.php';
+include_once plugin_dir_path(__FILE__) . 'wp/class/product-sync.php';
+include_once plugin_dir_path(__FILE__) . 'wp/class/order-sync.php';
+include_once plugin_dir_path(__FILE__) . 'zoho/api-handler.php';
+include_once plugin_dir_path(__FILE__) . 'wp/class/cron-handler.php';
 
 // Activation and Deactivation hooks
 register_activation_hook(__FILE__, 'zoho_woocommerce_sync_activate');

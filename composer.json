@@ -1,9 +1,29 @@
 {
     "require-dev": {
-        "symfony/var-dumper": "^6.4"
-    },
-     "require": {
-        "monolog/monolog": "^2.5",
+        "symfony/var-dumper": "^6.1",
+        "wp-coding-standards/wpcs": "3.0",
+        "monolog/monolog": "^3.7",
         "symfony/http-client": "^5.4"
-    }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+		"lint": [
+			"@php ./vendor/php-parallel-lint/php-parallel-lint/parallel-lint . -e php --show-deprecated --exclude vendor --exclude .git"
+		],
+		"check-cs": [
+			"vendor/bin/phpcs"
+		],
+		"fix-cs": [
+			"vendor/bin/phpcbf"
+		]
+	},
+	"scripts-descriptions": {
+		"lint": "Lint PHP files against parse errors.",
+		"check-cs": "Run the PHPCS script against the entire codebase.",
+		"fix-cs": "Run the PHPCBF script to fix all the autofixable violations on the codebase."
+	}
 }

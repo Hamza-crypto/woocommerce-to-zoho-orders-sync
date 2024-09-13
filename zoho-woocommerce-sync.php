@@ -1,6 +1,4 @@
 <?php
-
-
 /**
 * Plugin Name:       WooCommerce Zoho Sync
 * Description:       Sync WooCommerce products and orders with Zoho CRM.
@@ -34,16 +32,13 @@ require_once plugin_dir_path( __FILE__ ) . 'wp/class/cron-handler.php';
 register_activation_hook( __FILE__, 'zoho_woocommerce_sync_activate' );
 register_deactivation_hook( __FILE__, 'zoho_woocommerce_sync_deactivate' );
 
-// Plugin activation function
+
 function wzs_zoho_woocommerce_sync_activate() {
-	// Create necessary database tables
 	DB_Handler::create_tables();
-	// Schedule cron jobs
 	Cron_Handler::schedule_sync();
 }
 
-// Plugin deactivation function
-function wzs_zoho_woocommerce_sync_deactivate() {
-	// Remove scheduled cron jobs
+
+function zoho_woocommerce_sync_deactivate() {
 	Cron_Handler::unschedule_sync();
 }
